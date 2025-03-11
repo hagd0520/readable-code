@@ -1,5 +1,6 @@
-package cleancode.studycafe.tobe.io;
+package cleancode.studycafe.tobe.io.impl;
 
+import cleancode.studycafe.tobe.io.OutputHandler;
 import cleancode.studycafe.tobe.model.StudyCafeLockerPass;
 import cleancode.studycafe.tobe.model.StudyCafePass;
 

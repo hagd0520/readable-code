@@ -22,6 +22,10 @@ public class StudyCafePass {
         return passType;
     }
 
+    public boolean isPassTypeEqualTo(StudyCafePassType studyCafePassType) {
+        return passType == studyCafePassType;
+    }
+
     public int getDuration() {
         return duration;
     }
