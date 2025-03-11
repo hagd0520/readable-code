@@ -8,6 +8,7 @@ import cleancode.studycafe.tobe.io.OutputHandler;
 import cleancode.studycafe.tobe.model.StudyCafeLockerPass;
 import cleancode.studycafe.tobe.model.StudyCafePass;
 import cleancode.studycafe.tobe.model.StudyCafePassType;
+import cleancode.studycafe.tobe.snapshot.LockerPassSnapshot;
 import cleancode.studycafe.tobe.snapshot.PassSnapshot;
 
 import java.util.List;
@@ -42,48 +43,28 @@ public class StudyCafePassMachine {
     }
 
     private void chooseOptionByPassType(StudyCafePassType studyCafePassType) {
-        PassSnapshot passProcessor = PassSnapshot.of(studyCafePassType, fileHandler);
+        List<StudyCafePass> studyCafePasses = fileHandler.readStudyCafePasses();
+        PassSnapshot passSnapshot = PassSnapshot.of(studyCafePassType, studyCafePasses);
 
-        if (passProcessor.isHourly()) {
-            List<StudyCafePass> hourlyPasses = passProcessor.getStudyCafePasses();
-            outputHandler.showPassListForSelection(hourlyPasses);
-            StudyCafePass selectedPass = inputHandler.getSelectPass(hourlyPasses);
-            outputHandler.showPassOrderSummary(selectedPass, null);
-        }
+        List<StudyCafePass> filteredPasses = passSnapshot.getStudyCafePasses();
+        outputHandler.showPassListForSelection(filteredPasses);
 
-        if (passProcessor.isWeekly()) {
-            List<StudyCafePass> weeklyPasses = passProcessor.getStudyCafePasses();
-            outputHandler.showPassListForSelection(weeklyPasses);
-            StudyCafePass selectedPass = inputHandler.getSelectPass(weeklyPasses);
-            outputHandler.showPassOrderSummary(selectedPass, null);
-        }
+        StudyCafePass selectedPass = inputHandler.getSelectPass(filteredPasses);
+        outputHandler.showPassOrderSummary(selectedPass, null);
 
-        if (passProcessor.isFixed()) {
-            List<StudyCafePass> fixedPasses = passProcessor.getStudyCafePasses();
-            outputHandler.showPassListForSelection(fixedPasses);
-            StudyCafePass selectedPass = inputHandler.getSelectPass(fixedPasses);
-
+        if (passSnapshot.isFixed()) {
             List<StudyCafeLockerPass> lockerPasses = fileHandler.readLockerPasses();
-            StudyCafeLockerPass lockerPass = lockerPasses.stream()
-                .filter(option ->
-                    option.getPassType() == selectedPass.getPassType()
-                        && option.getDuration() == selectedPass.getDuration()
-                )
-                .findFirst()
-                .orElse(null);
+            LockerPassSnapshot lockerPassSnapshot = LockerPassSnapshot.of(lockerPasses);
+            StudyCafeLockerPass lockerPass = lockerPassSnapshot.findStudyCafeLockerPass(selectedPass);
 
-            boolean lockerSelection = false;
-            if (lockerPass != null) {
-                outputHandler.askLockerPass(lockerPass);
-                lockerSelection = inputHandler.getLockerSelection();
-            }
-
-            if (lockerSelection) {
+            outputHandler.askLockerPass(lockerPass);
+            if (inputHandler.getLockerSelection()) {
                 outputHandler.showPassOrderSummary(selectedPass, lockerPass);
-            } else {
-                outputHandler.showPassOrderSummary(selectedPass, null);
+                return;
             }
         }
+
+        outputHandler.showPassOrderSummary(selectedPass, null);
     }
 
 }
