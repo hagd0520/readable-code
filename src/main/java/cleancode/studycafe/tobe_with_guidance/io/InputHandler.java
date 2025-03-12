@@ -1,8 +1,8 @@
-package cleancode.studycafe.tobe_with_guidance.asis.io;
+package cleancode.studycafe.tobe_with_guidance.io;
 
-import cleancode.studycafe.tobe_with_guidance.asis.exception.AppException;
-import cleancode.studycafe.tobe_with_guidance.asis.model.StudyCafePass;
-import cleancode.studycafe.tobe_with_guidance.asis.model.StudyCafePassType;
+import cleancode.studycafe.tobe_with_guidance.exception.AppException;
+import cleancode.studycafe.tobe_with_guidance.model.StudyCafePass;
+import cleancode.studycafe.tobe_with_guidance.model.StudyCafePassType;
 
 import java.util.List;
 import java.util.Scanner;

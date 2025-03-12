@@ -1,4 +1,4 @@
-package cleancode.studycafe.tobe_with_guidance.asis;
+package cleancode.studycafe.tobe_with_guidance;
 
 public class StudyCafeApplication {
 

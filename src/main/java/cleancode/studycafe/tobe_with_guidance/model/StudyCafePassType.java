@@ -1,4 +1,4 @@
-package cleancode.studycafe.tobe_with_guidance.asis.model;
+package cleancode.studycafe.tobe_with_guidance.model;
 
 import java.util.Set;
 
