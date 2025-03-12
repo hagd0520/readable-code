@@ -5,6 +5,7 @@ import cleancode.studycafe.tobe_with_guidance.model.StudyCafePass;
 import cleancode.studycafe.tobe_with_guidance.model.StudyCafePassType;
 
 import java.util.List;
+import java.util.Optional;
 
 public class StudyCafeIOHandler {
 
@@ -41,7 +42,7 @@ public class StudyCafeIOHandler {
         return inputHandler.getSelectPass(passCandidates);
     }
 
-    public boolean getLockerSelection(StudyCafeLockerPass lockerPassCandidate) {
+    public boolean askLockerPass(StudyCafeLockerPass lockerPassCandidate) {
         outputHandler.askLockerPass(lockerPassCandidate);
         return inputHandler.getLockerSelection();
     }
