@@ -6,7 +6,7 @@ public class StudyCafeSeatPasses {
 
     private final List<StudyCafeSeatPass> passes;
 
-    public StudyCafeSeatPasses(List<StudyCafeSeatPass> passes) {
+    private StudyCafeSeatPasses(List<StudyCafeSeatPass> passes) {
         this.passes = passes;
     }
 

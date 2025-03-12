@@ -9,7 +9,7 @@ public class StudyCafeLockerPasses {
 
     private final List<StudyCafeLockerPass> lockerPasses;
 
-    public StudyCafeLockerPasses(List<StudyCafeLockerPass> lockerPasses) {
+    private StudyCafeLockerPasses(List<StudyCafeLockerPass> lockerPasses) {
         this.lockerPasses = lockerPasses;
     }
 
