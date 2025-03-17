@@ -4,8 +4,6 @@ public class LandMineCell implements Cell {
 
     private final CellState cellState = CellState.initialize();
 
-    private boolean isLandMine;
-
     @Override
     public boolean isLandMine() {
         return true;
