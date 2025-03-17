@@ -16,7 +16,7 @@ public class GameConfig {
         this.outputHandler = outputHandler;
     }
 
-    public GameLevel getGamelevel() {
+    public GameLevel getGameLevel() {
         return gamelevel;
     }
 
